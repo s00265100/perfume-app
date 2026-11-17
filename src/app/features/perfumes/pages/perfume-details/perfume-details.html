@@ -1,0 +1,17 @@
+<h2>Perfume Details</h2>
+
+@if (perfume(); as perfumeData) {
+  <div>
+    <h1>{{ perfumeData.name }}</h1>
+    <p>Brand: {{ perfumeData.brand }}</p>
+    <p>Scent Type: {{ perfumeData.scentType }}</p>
+    <p>Price: €{{ perfumeData.price }}</p>
+    <p>Description: {{ perfumeData.description }}</p>
+    <p>Gender: {{ perfumeData.gender }}</p>
+    <p>Rating: {{ perfumeData.rating }}</p>
+  </div>
+} @else {
+  <p>Loading perfume details...</p>
+}
+
+<p>The route parameter id is {{ id() }}</p>

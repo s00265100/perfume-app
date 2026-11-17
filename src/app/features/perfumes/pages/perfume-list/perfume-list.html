@@ -1,0 +1,15 @@
+<h2>Perfume List</h2>
+
+@if (perfumes$ | async; as perfumes) {
+
+  <div class="grid">
+    @for (perfume of perfumes; track perfume._id) {
+      <app-perfume-card [perfume]="perfume" />
+    }
+  </div>
+
+} @else {
+
+  <p>Loading perfumes...</p>
+
+}

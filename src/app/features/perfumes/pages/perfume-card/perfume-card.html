@@ -1,0 +1,8 @@
+<div class="card">
+  <h3>{{ perfume().name }} - {{ perfume().brand }}</h3>
+
+  <p>Scent Type: {{ perfume().scentType }}</p>
+  <p>Price: €{{ perfume().price }}</p>
+
+  <a [routerLink]="['/perfumes', perfume()._id]">View Profile</a>
+</div>
