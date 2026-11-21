@@ -9,6 +9,10 @@
     <p>Description: {{ perfumeData.description }}</p>
     <p>Gender: {{ perfumeData.gender }}</p>
     <p>Rating: {{ perfumeData.rating }}</p>
+
+    <a [routerLink]="['/perfumes', perfumeData._id, 'edit']">
+      Edit
+    </a>
   </div>
 } @else {
   <p>Loading perfume details...</p>

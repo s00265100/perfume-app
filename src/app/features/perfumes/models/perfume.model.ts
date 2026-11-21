@@ -18,3 +18,12 @@ export interface CreatePerfumeDto {
   gender: 'Men' | 'Women' | 'Unisex';
   rating: number;
 }
+export interface UpdatePerfumeDto {
+  name: string;
+  brand: string;
+  scentType: string;
+  price: number;
+  description: string;
+  gender: 'Men' | 'Women' | 'Unisex';
+  rating: number;
+}

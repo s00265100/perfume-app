@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Perfume,CreatePerfumeDto } from '../models/perfume.model';
+import { Perfume,CreatePerfumeDto,UpdatePerfumeDto } from '../models/perfume.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,10 @@ export class PerfumeService {
 addPerfume(perfume: CreatePerfumeDto): Observable<Perfume> {
   return this.http.post<Perfume>(this.apiUrl, perfume);
 }
-updatePerfume(id: string, perfume: CreatePerfumeDto): Observable<Perfume> {
+updatePerfume(id: string, perfume: UpdatePerfumeDto): Observable<Perfume> {
   return this.http.put<Perfume>(`${this.apiUrl}/${id}`, perfume);
+}
+deletePerfume(id: string): Observable<void> {
+  return this.http.delete<void>(`${this.apiUrl}/${id}`);
 }
 }

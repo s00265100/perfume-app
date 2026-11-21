@@ -1,11 +1,11 @@
 import { Component, inject, input, signal } from '@angular/core';
-
+import { RouterLink } from '@angular/router';
 import { Perfume } from '../../models/perfume.model';
 import { PerfumeService } from '../../services/perfume.service';
 
 @Component({
   selector: 'app-perfume-details',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './perfume-details.html',
   styleUrl: './perfume-details.css'
 })
