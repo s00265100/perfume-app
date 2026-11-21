@@ -1,0 +1,49 @@
+<form [formGroup]="perfumeForm" (ngSubmit)="onSubmit()">
+
+  <h2>Perfume Form</h2>
+
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <div>
+    <label for="brand">Brand:</label>
+    <input id="brand" type="text" formControlName="brand">
+  </div>
+
+  <div>
+    <label for="scentType">Scent Type:</label>
+    <input id="scentType" type="text" formControlName="scentType">
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input id="price" type="number" formControlName="price">
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+  <div>
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender">
+      <option value="">Select gender</option>
+      <option value="Men">Men</option>
+      <option value="Women">Women</option>
+      <option value="Unisex">Unisex</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="rating">Rating:</label>
+    <input id="rating" type="number" min="0" max="5" formControlName="rating">
+  </div>
+
+  <button type="submit" [disabled]="perfumeForm.invalid">
+    Add Perfume
+  </button>
+
+</form>

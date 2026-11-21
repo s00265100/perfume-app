@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { PerfumeList } from './features/perfumes/pages/perfume-list/perfume-list';
 import { PerfumeDetails } from './features/perfumes/pages/perfume-details/perfume-details';
+import { PerfumeForm } from './features/perfumes/pages/perfume-form/perfume-form';
 
 export const routes: Routes = [
   {
@@ -11,6 +12,10 @@ export const routes: Routes = [
   {
     path: 'perfumes',
     component: PerfumeList
+  },
+  {
+    path: 'perfumes/new',
+    component: PerfumeForm
   },
   {
     path: 'perfumes/:id',
