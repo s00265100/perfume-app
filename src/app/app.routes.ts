@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router';
 import { PerfumeList } from './features/perfumes/pages/perfume-list/perfume-list';
 import { PerfumeDetails } from './features/perfumes/pages/perfume-details/perfume-details';
+import { Home } from './features/home/pages/home/home';
 import { PerfumeForm } from './features/perfumes/pages/perfume-form/perfume-form';
+
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'perfumes',
-    pathMatch: 'full'
+    component: Home
   },
   {
     path: 'perfumes',
@@ -15,6 +16,10 @@ export const routes: Routes = [
   },
   {
     path: 'perfumes/new',
+    component: PerfumeForm
+  },
+  {
+    path: 'perfumes/:id/edit',
     component: PerfumeForm
   },
   {

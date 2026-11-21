@@ -1,24 +1,85 @@
-<h2>Perfume Details</h2>
-
 @if (perfume(); as perfumeData) {
-  <div>
-    <h1>{{ perfumeData.name }}</h1>
-    <p>Brand: {{ perfumeData.brand }}</p>
-    <p>Scent Type: {{ perfumeData.scentType }}</p>
-    <p>Price: €{{ perfumeData.price }}</p>
-    <p>Description: {{ perfumeData.description }}</p>
-    <p>Gender: {{ perfumeData.gender }}</p>
-    <p>Rating: {{ perfumeData.rating }}</p>
 
-    <a [routerLink]="['/perfumes', perfumeData._id, 'edit']">
-      Edit
-    </a>
+  <div class="details-wrapper">
+
+    <div class="details-card">
+
+      @if (perfumeData.imageUrl) {
+        <img
+          class="perfume-image"
+          [src]="perfumeData.imageUrl"
+          [alt]="perfumeData.name">
+      }
+
+      <h1>{{ perfumeData.name }}</h1>
+
+      <p class="brand">
+        {{ perfumeData.brand }}
+      </p>
+
+      <div class="details-info">
+
+        <p>
+          <strong>Scent Type:</strong>
+          {{ perfumeData.scentType }}
+        </p>
+
+        <p>
+          <strong>Price:</strong>
+          €{{ perfumeData.price }}
+        </p>
+
+        <p>
+          <strong>Description:</strong>
+          {{ perfumeData.description }}
+        </p>
+
+        <p>
+          <strong>Gender:</strong>
+          {{ perfumeData.gender }}
+        </p>
+
+        <div class="rating-row">
+          <strong>Rating:</strong>
+
+         <span class="rating-stars">
+  @for (star of [1, 2, 3, 4, 5]; track star) {
+    {{ perfumeData.rating >= star ? '★' : '☆' }}
+  }
+</span>
+
+<span>
+  {{ perfumeData.rating }} / 5
+</span>
+        </div>
+
+      </div>
+
+      <div class="button-group">
+
+        <a
+          class="edit-button"
+          [routerLink]="['/perfumes', perfumeData._id, 'edit']">
+          Edit
+        </a>
+
+        <button
+          class="delete-button"
+          type="button"
+          (click)="deletePerfume()">
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
   </div>
+
 } @else {
-  <p>Loading perfume details...</p>
+
+  <p class="loading">
+    Loading perfume details...
+  </p>
+
 }
-
-
-<button type="button" (click)="deletePerfume()">
-  Delete
-</button>
