@@ -1,41 +1,112 @@
-<div class="dashboard">
+<div class="home-page">
 
-  <h1>Perfume Collection</h1>
+  <section class="hero-section">
 
-  <p class="subtitle">
-    Manage your perfume collection
-  </p>
+    <div class="hero-content">
 
-  <div class="dashboard-options">
-
-    <a
-      class="dashboard-card"
-      routerLink="/perfumes">
-
-      <h2>View Perfumes</h2>
-
-      <p>
-        Browse all perfumes currently stored in the collection.
+      <p class="eyebrow">
+        Perfume Recommendation & Review
       </p>
 
-      <span>View Collection →</span>
+      <h1>
+        Discover your next favourite perfume
+      </h1>
 
-    </a>
-
-    <a
-      class="dashboard-card"
-      routerLink="/perfumes/new">
-
-      <h2>Add Perfume</h2>
-
-      <p>
-        Add a new perfume with details, rating and an image.
+      <p class="hero-text">
+        Browse perfumes, explore fragrance details and manage your collection
+        in one simple application.
       </p>
 
-      <span>Add Perfume →</span>
+      <div class="hero-buttons">
 
-    </a>
+        <a
+          class="primary-button"
+          routerLink="/perfumes">
 
-  </div>
+          View Perfumes
+
+        </a>
+
+        <a
+          class="secondary-button"
+          href=""
+          (click)="
+            $event.preventDefault();
+            goToAddPerfume()
+          ">
+
+          Add Perfume
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="dashboard-section">
+
+    <h2>
+      What would you like to do?
+    </h2>
+
+    <div class="dashboard-grid">
+
+      <a
+        class="dashboard-card"
+        routerLink="/perfumes">
+
+        <div class="card-icon">
+          ✨
+        </div>
+
+        <h3>
+          Browse Perfumes
+        </h3>
+
+        <p>
+          View all perfumes currently stored in the collection and open
+          individual perfume profiles.
+        </p>
+
+        <span>
+          View Collection →
+        </span>
+
+      </a>
+
+
+      <a
+        class="dashboard-card"
+        href=""
+        (click)="
+          $event.preventDefault();
+          goToAddPerfume()
+        ">
+
+        <div class="card-icon">
+          +
+        </div>
+
+        <h3>
+          Add Perfume
+        </h3>
+
+        <p>
+          Add a new perfume including its brand, scent type, price, description,
+          rating and image.
+        </p>
+
+        <span>
+          Add Perfume →
+        </span>
+
+      </a>
+
+    </div>
+
+  </section>
 
 </div>

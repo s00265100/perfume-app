@@ -1,12 +1,12 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 
 import { Perfume } from '../../models/perfume.model';
 import { PerfumeService } from '../../services/perfume.service';
 
 @Component({
   selector: 'app-perfume-details',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './perfume-details.html',
   styleUrl: './perfume-details.css'
 })
@@ -34,34 +34,75 @@ export class PerfumeDetails {
 
     });
   }
+// Perfume details can be view by anyone
+// but editing require the user to have logged in
+goToEdit(): void {
 
+  const token =
+    localStorage.getItem('token');
+
+  if (!token) {
+
+    this.router.navigate(['/login']);
+
+    return;
+  }
+
+  this.router.navigate([
+    '/perfumes',
+    this.id(),
+    'edit'
+  ]);
+}
   
   deletePerfume(): void {
 
-    const id = this.id();
+  // Deleting is restricted on the Angular side.
+  // If there is no JWT in the browser the user is sent to Login.
+  const token =
+    localStorage.getItem('token');
 
-    
-    if (!confirm('Are you sure you want to delete this perfume?')) {
-      return;
-    }
+  if (!token) {
 
-    // call delete from perfume service
-    this.perfumeService.deletePerfume(id).subscribe({
+    this.router.navigate(['/login']);
+
+    return;
+  }
+
+  const id = this.id();
+
+  if (
+    !confirm(
+      'Are you sure you want to delete this perfume?'
+    )
+  ) {
+
+    return;
+  }
+
+  this.perfumeService
+    .deletePerfume(id)
+    .subscribe({
 
       next: () => {
 
-        console.log('Perfume deleted succesfully');
+        console.log(
+          'Perfume deleted succesfully'
+        );
 
-        // go back to perfume list once its deleted
-        this.router.navigate(['/perfumes']);
+        this.router.navigate([
+          '/perfumes'
+        ]);
       },
 
-      error: (error) => {
+      error: error => {
 
-        
-        console.error('Error deleting perfume:', error);
+        console.error(
+          'Error deleting perfume:',
+          error
+        );
       }
 
     });
-  }
+}
 }

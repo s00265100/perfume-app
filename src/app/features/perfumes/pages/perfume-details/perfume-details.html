@@ -57,11 +57,18 @@
 
       <div class="button-group">
 
-        <a
-          class="edit-button"
-          [routerLink]="['/perfumes', perfumeData._id, 'edit']">
-          Edit
-        </a>
+        <!--
+  edit is checking before navigation because only logged in
+  users should be able to change perfume information
+-->
+<button
+  class="edit-button"
+  type="button"
+  (click)="goToEdit()">
+
+  Edit
+
+</button>
 
         <button
           class="delete-button"

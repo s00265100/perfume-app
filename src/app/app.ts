@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class App {
 
+  private router = inject(Router);
+
   // controls the mobile menu
   menuOpen = signal(false);
 
-  // open and close burger menu
+  // open and the close burger menu
   toggleMenu(): void {
     this.menuOpen.update(open => !open);
   }
@@ -24,4 +26,37 @@ export class App {
   closeMenu(): void {
     this.menuOpen.set(false);
   }
+
+  // This check is an Angular frontend feature
+  // The people can browse perfumes but adding a perfume
+  // requires the user to be logged in
+  goToAddPerfume(): void {
+
+    const token =
+      localStorage.getItem('token');
+
+    if (!token) {
+
+      this.closeMenu();
+
+      this.router.navigate(['/login']);
+
+      return;
+    }
+
+    this.closeMenu();
+
+    this.router.navigate([
+      '/perfumes/new'
+    ]);
+  }
+  isLoggedIn(): boolean {
+  return localStorage.getItem('token') !== null;
+}
+
+logout(): void {
+  localStorage.removeItem('token');
+  this.closeMenu();
+  this.router.navigate(['/']);
+}
 }

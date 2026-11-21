@@ -7,15 +7,12 @@
     PerfumeApp
   </a>
 
-  <!-- burger button only shows on small screens -->
   <button
     type="button"
     class="menu-button"
     (click)="toggleMenu()"
     aria-label="Open navigation menu">
-
     ☰
-
   </button>
 
   <nav [class.open]="menuOpen()">
@@ -32,11 +29,42 @@
       Perfumes
     </a>
 
+    
+
     <a
-      routerLink="/perfumes/new"
-      (click)="closeMenu()">
+      href=""
+      (click)="
+        $event.preventDefault();
+        goToAddPerfume()
+      ">
       Add Perfume
     </a>
+    <a
+      routerLink="/about"
+      (click)="closeMenu()">
+      About
+    </a>
+
+    @if (isLoggedIn()) {
+
+      <a
+        href=""
+        (click)="
+          $event.preventDefault();
+          logout()
+        ">
+        Logout
+      </a>
+
+    } @else {
+
+      <a
+        routerLink="/login"
+        (click)="closeMenu()">
+        Login
+      </a>
+
+    }
 
   </nav>
 
