@@ -7,6 +7,7 @@ export interface Perfume {
   description: string;
   gender: 'Men' | 'Women' | 'Unisex';
   rating: number;
+  imageUrl?: string;
 }
 
 export interface CreatePerfumeDto {
@@ -17,7 +18,9 @@ export interface CreatePerfumeDto {
   description: string;
   gender: 'Men' | 'Women' | 'Unisex';
   rating: number;
+  imageUrl?: string;
 }
+
 export interface UpdatePerfumeDto {
   name: string;
   brand: string;
@@ -26,4 +29,5 @@ export interface UpdatePerfumeDto {
   description: string;
   gender: 'Men' | 'Women' | 'Unisex';
   rating: number;
+  imageUrl?: string;
 }

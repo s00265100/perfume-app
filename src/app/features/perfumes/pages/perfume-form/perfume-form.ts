@@ -46,6 +46,7 @@ export class PerfumeForm implements OnInit {
       Validators.min(0)
     ]],
     description: ['', Validators.required],
+    imageUrl: [''],
 
     gender: this.formBuilder.nonNullable.control<
       'Men' | 'Women' | 'Unisex' | ''
@@ -87,8 +88,9 @@ export class PerfumeForm implements OnInit {
           scentType: perfume.scentType,
           price: perfume.price,
           description: perfume.description,
+          imageUrl: perfume.imageUrl ?? '',
           gender: perfume.gender,
-          rating: perfume.rating
+          rating: perfume.rating,
         });
       },
 
@@ -114,7 +116,8 @@ export class PerfumeForm implements OnInit {
       price,
       description,
       gender,
-      rating
+      rating,
+      imageUrl
     } = this.perfumeForm.getRawValue();
 
     
@@ -130,7 +133,8 @@ export class PerfumeForm implements OnInit {
       price,
       description,
       gender,
-      rating
+      rating,
+      imageUrl: imageUrl || undefined
     };
 
     const id = this.id();

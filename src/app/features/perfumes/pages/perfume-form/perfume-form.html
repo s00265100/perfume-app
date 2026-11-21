@@ -116,6 +116,25 @@
         }
 
       </div>
+      <mat-form-field appearance="outline">
+  <mat-label>Perfume Image URL</mat-label>
+
+  <input
+    matInput
+    type="url"
+    formControlName="imageUrl"
+    placeholder="https://example.com/perfume.jpg">
+
+  <mat-hint>Paste an image URL</mat-hint>
+</mat-form-field>
+
+@if (perfumeForm.controls.imageUrl.value) {
+  <div class="image-preview">
+    <img
+      [src]="perfumeForm.controls.imageUrl.value"
+      alt="Perfume preview">
+  </div>
+}
 
       <button
         mat-raised-button

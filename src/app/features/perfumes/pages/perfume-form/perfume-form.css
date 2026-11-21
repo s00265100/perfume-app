@@ -13,3 +13,50 @@
 mat-form-field {
   width: 100%;
 }
+.stars {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.star-button {
+  border: none;
+  background: transparent;
+  font-size: 2.4rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  color: #c2185b;
+  transition: transform 0.15s ease;
+}
+
+.star-button:hover {
+  transform: scale(1.2);
+}
+
+.rating-field {
+  padding: 8px 0 18px;
+}
+
+.rating-label {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.rating-error {
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+.image-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.image-preview img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 12px;
+}
