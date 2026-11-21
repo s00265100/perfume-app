@@ -4,78 +4,126 @@
 
   <mat-card-content>
 
-    <form [formGroup]="perfumeForm" (ngSubmit)="onSubmit()" class="perfume-form">
+    <form
+      [formGroup]="perfumeForm"
+      (ngSubmit)="onSubmit()"
+      class="perfume-form">
 
       <mat-form-field appearance="outline">
-  <mat-label>Name</mat-label>
-  <input matInput formControlName="name">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
 
-  @if (perfumeForm.controls.name.hasError('required')) {
-    <mat-error>Name is required</mat-error>
-  }
-</mat-form-field>
-
-     <mat-form-field appearance="outline">
-  <mat-label>Brand</mat-label>
-  <input matInput formControlName="brand">
-
-  @if (perfumeForm.controls.brand.hasError('required')) {
-    <mat-error>Brand is required</mat-error>
-  }
-</mat-form-field>
-
-      <mat-form-field appearance="outline">
-  <mat-label>Scent Type</mat-label>
-  <input matInput formControlName="scentType">
-
-  @if (perfumeForm.controls.scentType.hasError('required')) {
-    <mat-error>Scent type is required</mat-error>
-  }
-</mat-form-field>
-
-     <mat-form-field appearance="outline">
-  <mat-label>Price</mat-label>
-  <input matInput type="number" formControlName="price">
-
-  @if (perfumeForm.controls.price.hasError('required')) {
-    <mat-error>Price is required</mat-error>
-  } @else if (perfumeForm.controls.price.hasError('min')) {
-    <mat-error>Price cannot be less than 0</mat-error>
-  }
-</mat-form-field>
-
-     <mat-form-field appearance="outline">
-  <mat-label>Description</mat-label>
-  <textarea matInput formControlName="description"></textarea>
-
-  @if (perfumeForm.controls.description.hasError('required')) {
-    <mat-error>Description is required</mat-error>
-  }
-</mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Gender</mat-label>
-        <input matInput formControlName="gender">
+        @if (perfumeForm.controls.name.hasError('required')) {
+          <mat-error>Name is required</mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-  <mat-label>Rating</mat-label>
-  <input matInput type="number" formControlName="rating">
+        <mat-label>Brand</mat-label>
+        <input matInput formControlName="brand">
 
-  @if (perfumeForm.controls.rating.hasError('required')) {
-    <mat-error>Rating is required</mat-error>
-  } @else if (perfumeForm.controls.rating.hasError('min')) {
-    <mat-error>Rating must be at least 0</mat-error>
-  } @else if (perfumeForm.controls.rating.hasError('max')) {
-    <mat-error>Rating cannot be more than 5</mat-error>
-  }
-</mat-form-field>
+        @if (perfumeForm.controls.brand.hasError('required')) {
+          <mat-error>Brand is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Scent Type</mat-label>
+        <input matInput formControlName="scentType">
+
+        @if (perfumeForm.controls.scentType.hasError('required')) {
+          <mat-error>Scent type is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="price">
+
+        @if (perfumeForm.controls.price.hasError('required')) {
+          <mat-error>Price is required</mat-error>
+        } @else if (perfumeForm.controls.price.hasError('min')) {
+          <mat-error>Price cannot be less than 0</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+
+        <textarea
+          matInput
+          formControlName="description">
+        </textarea>
+
+        @if (perfumeForm.controls.description.hasError('required')) {
+          <mat-error>Description is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+
+        <select
+          matNativeControl
+          formControlName="gender">
+
+          <option value="">Select gender</option>
+          <option value="Men">Men</option>
+          <option value="Women">Women</option>
+          <option value="Unisex">Unisex</option>
+
+        </select>
+
+        @if (perfumeForm.controls.gender.hasError('required')) {
+          <mat-error>Gender is required</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="rating-field">
+
+        <label class="rating-label">
+          Rating
+        </label>
+
+        <div class="stars">
+
+          @for (star of stars; track star) {
+
+            <button
+              type="button"
+              class="star-button"
+              (click)="setRating(star)">
+
+              {{ perfumeForm.controls.rating.value >= star ? '★' : '☆' }}
+
+            </button>
+
+          }
+
+        </div>
+
+        @if (perfumeForm.controls.rating.value === 0) {
+          <p class="rating-error">
+            Please select a rating
+          </p>
+        } @else {
+          <p>
+            Rating: {{ perfumeForm.controls.rating.value }} / 5
+          </p>
+        }
+
+      </div>
 
       <button
         mat-raised-button
         type="submit"
         [disabled]="perfumeForm.invalid">
-        Add Perfume
+
+        {{ id() ? 'Update Perfume' : 'Add Perfume' }}
+
       </button>
 
     </form>

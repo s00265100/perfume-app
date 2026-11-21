@@ -29,12 +29,14 @@ export class PerfumeForm implements OnInit {
   // If there is no idwe are creating a new perfume
   readonly id = input<string>();
 
-  // Inject the services we need.
+  // Inject the services we need
   private formBuilder = inject(FormBuilder);
   private perfumeService = inject(PerfumeService);
   private router = inject(Router);
 
-  // Reactive form with client-side validation
+  readonly stars = [1, 2, 3, 4, 5];
+
+  // Reactive form with clientside validation
   perfumeForm = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     brand: ['', Validators.required],
@@ -54,13 +56,17 @@ export class PerfumeForm implements OnInit {
 
     rating: [0, [
       Validators.required,
-      Validators.min(0),
+      Validators.min(1),
       Validators.max(5)
     ]]
   });
 
-  // Runs when the component loads.
-  // If an id exists load that perfume and put its values into the form.
+  setRating(rating: number): void {
+    this.perfumeForm.controls.rating.setValue(rating);
+  }
+
+  // runs when the component loads
+  // iff an id exists load that perfume and put its values into the form
   ngOnInit(): void {
 
     const id = this.id();
