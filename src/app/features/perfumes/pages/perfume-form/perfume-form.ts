@@ -24,9 +24,9 @@ import { CreatePerfumeDto } from '../../models/perfume.model';
 })
 export class PerfumeForm implements OnInit {
 
-  // Optional roite parameter.
-  // If there is an id, we are editing an existing perfume.
-  // If there is no id, we are creating a new perfume.
+  // Optional roite parameter
+  // If there is an id we are editing an existing perfume
+  // If there is no idwe are creating a new perfume
   readonly id = input<string>();
 
   // Inject the services we need.
@@ -34,7 +34,7 @@ export class PerfumeForm implements OnInit {
   private perfumeService = inject(PerfumeService);
   private router = inject(Router);
 
-  // Reactive form with client-side validation.
+  // Reactive form with client-side validation
   perfumeForm = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     brand: ['', Validators.required],
@@ -65,16 +65,16 @@ export class PerfumeForm implements OnInit {
 
     const id = this.id();
 
-    // No id means we are adding a new perfume.
+    // No id means we are adding a new perfume
     if (!id) {
       return;
     }
 
-    // Get the existing perfume from the API.
+    // Get the existing perfume from the api
     this.perfumeService.getPerfumeById(id).subscribe({
       next: (perfume) => {
 
-        // Fill the form with the existing perfume details.
+        // Fill the form with the existing perfume details
         this.perfumeForm.patchValue({
           name: perfume.name,
           brand: perfume.brand,
@@ -92,15 +92,15 @@ export class PerfumeForm implements OnInit {
     });
   }
 
-  // Runms when the user submits the form.
+  // Runms when the user submits the form
   onSubmit(): void {
 
-    // Do not submit an invalid form.
+    // Do not submit an invalid form
     if (this.perfumeForm.invalid) {
       return;
     }
 
-    // Get all values from the reactive form.
+    // get all values from the reactive form
     const {
       name,
       brand,
@@ -111,12 +111,12 @@ export class PerfumeForm implements OnInit {
       rating
     } = this.perfumeForm.getRawValue();
 
-    // Gender is required, so stop if none was selected.
+    
     if (!gender) {
       return;
     }
 
-    // Create the object that will be sent to the Express API.
+    // Create the object that will be sent to the api
     const perfumeData: CreatePerfumeDto = {
       name,
       brand,
@@ -129,13 +129,14 @@ export class PerfumeForm implements OnInit {
 
     const id = this.id();
 
-    // If an id exist update the perfume.
-    // Orcreate a new perfume.
+    // If an id exist update the perfume
+    // Orcreate a new perfume
     const request = id
       ? this.perfumeService.updatePerfume(id, perfumeData)
       : this.perfumeService.addPerfume(perfumeData);
 
-    // Send the HTTP request.
+    // Send the hhto
+    // p request
     request.subscribe({
       next: (response) => {
         console.log(
@@ -143,7 +144,7 @@ export class PerfumeForm implements OnInit {
           response
         );
 
-        // Return to the perfum list after saving.
+        // Return to the perfum list after saving
         this.router.navigate(['/perfumes']);
       },
 

@@ -12,7 +12,7 @@ import { PerfumeService } from '../../services/perfume.service';
 })
 export class PerfumeDetails {
 
-  // getting access to the perfume service
+  
   private perfumeService = inject(PerfumeService);
 
   // router is used after deletting so we can go back to perfume list
@@ -35,12 +35,12 @@ export class PerfumeDetails {
     });
   }
 
-  // delete the perfume
+  
   deletePerfume(): void {
 
     const id = this.id();
 
-    // ask first incase user clicked delete by mistake
+    
     if (!confirm('Are you sure you want to delete this perfume?')) {
       return;
     }
@@ -58,7 +58,7 @@ export class PerfumeDetails {
 
       error: (error) => {
 
-        // show error in console if deleting fails
+        
         console.error('Error deleting perfume:', error);
       }
 
